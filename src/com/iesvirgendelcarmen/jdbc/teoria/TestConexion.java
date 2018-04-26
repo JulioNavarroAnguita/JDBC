@@ -11,7 +11,7 @@ public class TestConexion {
 		//debemos obtener la misma referencia
 		System.out.println(conexion0);
 		System.out.println(conexion1);
-		//cierra conexión
+		//cierra conexion
 
 
 	}

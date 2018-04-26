@@ -58,7 +58,7 @@ public class Conexion {
 		public void run() {
 			if (conexion != null)
 				try {
-					System.out.println("Cerrando conexión");
+					System.out.println("Cerrando conexion");
 					conexion.close();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
