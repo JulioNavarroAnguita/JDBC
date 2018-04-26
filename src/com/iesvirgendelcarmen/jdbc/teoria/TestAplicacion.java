@@ -10,14 +10,21 @@ public class TestAplicacion {
 		
 		List<LibroDTO> listaTotalLibrosDisponibles = manipulacionLibros.listarLibrosDisponibles();
 		
-		System.out.println("Nº total de libros: " + listaTotal.size());
+		System.out.println("Numero total de libros: " + listaTotal.size());
+		System.out.println(listaTotalLibrosDisponibles);
 		System.out.println("numero de libros disponibles: " + listaTotalLibrosDisponibles.size());
+
 		
-		manipulacionLibros.borrarLibro("Santa Tecla", "Pepito");
-		System.out.println("Nº total de libros: " + listaTotal.size());
+		manipulacionLibros.borrarLibro("Terminator", "Paquito");
+		System.out.println("N total de libros: " + listaTotal.size());
 		
-		manipulacionLibros.actualizarCategoriaLibro("Aplicaciones web", "WebOS");
-		System.out.println("");
+		LibroDTO libroDTO = new LibroDTO("WebOS", null, null, null);
+		System.out.println(manipulacionLibros.actualizarCategoriaLibro(libroDTO, "Programacion"));
+		
+		LibroDTO libroDTO2 = new LibroDTO("Quijote", "Malote", "Feo", "Programacion");
+		System.out.println(manipulacionLibros.insertarLibro(libroDTO2));
+		
+		
 		
 		
 	}

@@ -42,7 +42,7 @@ public class LibroDAOImp implements LibroDAO {
 		try (Statement st = conexion.createStatement();){
 			ResultSet rst = st.executeQuery(sql1);
 			while(rst.next()) {
-				LibroDTO libroNoPrestado = new LibroDTO(rst.getString(1), rst.getString(2));
+				LibroDTO libroNoPrestado = new LibroDTO(rst.getString(1), rst.getString(2),null,null);
 				listaLibrosNoPrestados.add(libroNoPrestado);
 			}
 		} catch (SQLException e) {
@@ -69,25 +69,43 @@ public class LibroDAOImp implements LibroDAO {
 	}
 
 	@Override
-	public boolean actualizarCategoriaLibro(String nombreCategoria, String nombreLibro) {
-
-		String sql3 = "UPDATE libro SET categoria = ? AND nombre = ?;";
+	public boolean actualizarCategoriaLibro(LibroDTO libroDTO, String nombreCategoria) {
+		int updates = 0;
+		//UPDATE libro SET categoria = 'Programacion' WHERE nombre = 'WebOS';
+		System.out.println(libroDTO + "--" + nombreCategoria);
+		String sql3 = "UPDATE libro SET categoria = ? WHERE nombre = ?;";
 		try (PreparedStatement pst1 = conexion.prepareStatement(sql3);) {
 			pst1.setString(1, nombreCategoria);
-			pst1.setString(2, nombreLibro);
-			pst1.executeUpdate();
+			pst1.setString(2, libroDTO.getNombreLibro()); 
+			updates = pst1.executeUpdate();
+			System.out.println(updates);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		return true;
+		
+		return updates != 0;
 	}
 
 	@Override
 	public boolean insertarLibro(LibroDTO libro) {
-		// TODO Auto-generated method stub
-		return false;
+	//INSERT into libro (nombre, autor, editorial, categoria) VALUES ('Quijote', 'Pepe', 'Santillana', 'Perl');
+		int updates2 = 0;
+		//System.out.println(libro);
+		String sql4 = "INSERT into libro (nombre, autor, editorial, categoria) VALUES (?, ?, ?, ?);";
+		try (PreparedStatement pst2 = conexion.prepareStatement(sql4);){
+			pst2.setString(1,libro.getNombreLibro());
+			pst2.setString(2, libro.getNombreAutor());
+			pst2.setString(3, libro.getEditorial());
+			pst2.setString(4, libro.getNombreCategoria());
+			updates2 = pst2.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return updates2 != 0;
 	}
 
 	@Override

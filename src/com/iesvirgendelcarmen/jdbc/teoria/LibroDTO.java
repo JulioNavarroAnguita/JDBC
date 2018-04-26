@@ -22,10 +22,10 @@ public class LibroDTO {
 	
 	
 
-	public LibroDTO(String nombreLibro, String nombreCategoria) {
+	/*public LibroDTO(String nombreLibro, String nombreCategoria) {
 		this.nombreLibro = nombreLibro;
 		this.nombreCategoria = nombreCategoria;
-	}
+	}*/
 
 
 
