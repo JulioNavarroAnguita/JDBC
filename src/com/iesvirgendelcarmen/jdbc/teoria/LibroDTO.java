@@ -20,14 +20,6 @@ public class LibroDTO {
 		this.nombreCategoria = nombreCategoria;
 	}
 	
-	
-
-	/*public LibroDTO(String nombreLibro, String nombreCategoria) {
-		this.nombreLibro = nombreLibro;
-		this.nombreCategoria = nombreCategoria;
-	}*/
-
-
 
 	public String getNombreLibro() {
 		return nombreLibro;

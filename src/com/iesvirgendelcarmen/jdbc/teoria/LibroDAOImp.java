@@ -1,4 +1,4 @@
-package com.iesvirgendelcarmen.jdbc.teoria;
+   package com.iesvirgendelcarmen.jdbc.teoria;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,8 +8,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class LibroDAOImp implements LibroDAO {
 
+	
 	private static Connection conexion = Conexion.getConexion();
 	@Override
 	public List<LibroDTO> listarTodosLibros() {
@@ -25,6 +27,7 @@ public class LibroDAOImp implements LibroDAO {
 						resulset.getString(4),
 						resulset.getString(5));
 				listaLibros.add(libro);
+				
 
 			}
 		} catch (SQLException e) {
@@ -72,13 +75,13 @@ public class LibroDAOImp implements LibroDAO {
 	public boolean actualizarCategoriaLibro(LibroDTO libroDTO, String nombreCategoria) {
 		int updates = 0;
 		//UPDATE libro SET categoria = 'Programacion' WHERE nombre = 'WebOS';
-		System.out.println(libroDTO + "--" + nombreCategoria);
+		//System.out.println(libroDTO + "--" + nombreCategoria);
 		String sql3 = "UPDATE libro SET categoria = ? WHERE nombre = ?;";
 		try (PreparedStatement pst1 = conexion.prepareStatement(sql3);) {
 			pst1.setString(1, nombreCategoria);
 			pst1.setString(2, libroDTO.getNombreLibro()); 
 			updates = pst1.executeUpdate();
-			System.out.println(updates);
+			//System.out.println(updates);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -110,7 +113,7 @@ public class LibroDAOImp implements LibroDAO {
 
 	@Override
 	public boolean insertarListaLibros(List<LibroDTO> listaLibros) {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
